@@ -1,11 +1,15 @@
 @font-face {
-    font-family: "JosefinSansR";
-    src: url("Josefin_Sans/static/JosefinSans-Regular.ttf");
-  }
+  font-family: "JosefinSansR";
+  src: url("Josefin_Sans/static/JosefinSans-Regular.ttf");
+}
 @font-face {
-    font-family: "JosefinSansL";
-    src: url("Josefin_Sans/static/JosefinSans-Light.ttf");
-  }
+  font-family: "JosefinSansL";
+  src: url("Josefin_Sans/static/JosefinSans-Light.ttf");
+}
 body {
-    font-family: "JosefinSansR";
+  font-family: "JosefinSansR";
+}
+#container {
+  margin: auto;
+  width: 90%;
 }
