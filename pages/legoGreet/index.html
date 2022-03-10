@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Macro Assignment 2</title>
+    <meta charset="utf-8" />
+    <style>
+      #container {
+        width: 1280px;
+        height: 994px;
+        margin: auto;
+        position: relative;
+      }
+      #header {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        font-size: 300%;
+      }
+      #info {
+        position: absolute;
+        top: 100px;
+        left: 20px;
+        border: 1px solid black;
+        font-size: 150%;
+        padding: 10px;
+        background-color: #eee;
+        border-radius: 10px 10px 10px 10px;
+      }
+      #legobody {
+        position: absolute;
+        bottom: 0px;
+        right: 200px;
+        z-index: 1;
+      }
+      #legohead {
+        position: absolute;
+        bottom: 280px;
+        right: 280px;
+        z-index: 1;
+      }
+      #background {
+        z-index: 0;
+      }
+      #decal {
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        bottom: 385px;
+        right: 305px;
+        z-index: 2;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="container">
+      <script>
+        // ask user to enter number
+        let answer = prompt(
+          "Please enter a number that is greater or equal to 3!"
+        );
+        while (isNaN(answer) || answer < 3) {
+          answer = prompt(
+            "Please enter a number that is greater or equal to 3!"
+          );
+        }
+        // get the date and greeting
+        let now = new Date();
+        let minutes = now.getMinutes();
+        let hours = now.getHours();
+        var ampm = hours >= 12 ? "pm" : "am";
+        hours = hours % 12;
+        if (hours === 0) {
+          hours = 12;
+        }
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        // ampm = "am";
+        // hours = 4;
+        // minutes = 21;
+        var strTime = hours + ":" + minutes + " " + ampm;
+        // console.log(ampm);
+        // console.log(hours);
+        var period;
+        if (ampm == "am") {
+          if ((hours >= 1 && hours < 6) || hours === 12) {
+            period = "Night";
+          } else if (hours >= 6 && hours < 12) {
+            period = "Morning";
+          }
+        } else if (ampm == "pm") {
+          if (hours == 12 || hours < 6) {
+            period = "Afternoon";
+          } else if (hours >= 6 && hours < 12) {
+            period = "Evening";
+          }
+        }
+        // console.log(hours);
+        // console.log(minutes);
+        // console.log(period);
+        // console.log(period.toLowerCase());
+        // array of words to choose from
+        const words = [
+          "Awesome",
+          "Fantastic",
+          "Fabulous",
+          "Superb",
+          "Perfect",
+          "Brilliant",
+          "Coming up Roses",
+        ];
+        // show luck number
+
+        // generate random lucky number
+        var luckNumbers = [];
+        while (luckNumbers.length < 3) {
+          luckNumber = parseInt(Math.random() * parseInt(answer)) + 1;
+          if (!luckNumbers.includes(luckNumber)) {
+            luckNumbers.push(luckNumber);
+          }
+        }
+        // console.log(luckNumbers);
+        // pick a random word from the array
+        let index = parseInt(Math.random() * words.length);
+        let headIndex = parseInt(Math.random() * 6) + 1;
+        let bodyIndex = parseInt(Math.random() * 6) + 1;
+        let decalIndex = parseInt(Math.random() * 4) + 1;
+        // Write content to the html Page
+        document.write(
+          `<img id="background" src="images/backgrounds/${period.toLowerCase()}.png" />`
+        );
+        document.write(`<div id="header">Everything is ${words[index]}!</div>`);
+        document.write(
+          `<div id="info">The current time is ${strTime} - good ${period}! <br> Your three lucky numbers today are ${luckNumbers[0]}, ${luckNumbers[1]}, and ${luckNumbers[2]}!</div>`
+        );
+        document.write(
+          `<img id="legohead" src="images/heads/head${headIndex}.png" />`
+        );
+        document.write(
+          `<img id="legobody" src="images/bodies/body${bodyIndex}.png" />`
+        );
+        document.write(
+          `<img id="decal" src="images/decals/decal${decalIndex}.png" />`
+        );
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+svg {
+    border: 3px solid black;
+  }
+  div {
+    width: 90%;
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .logo {
+    fill: none;
+    stroke: #f58709;
+    stroke-width: 8;
+  }
+  .Y {
+    stroke: #54c0cc;
+    stroke-width: 8;
+  }
+  .X {
+    stroke: #7ea00e;
+    stroke-width: 8;
+  }
+  .sign {
+    font-family: "Gill Sans", sans-serif;
+    font-size: 1.5em;
+    line-height: 1.3em;
+    fill: white;
+  }
+  .Y:hover {
+    stroke: white;
+  }
+  .Y:active {
+    stroke: black;
+  }
+  .X:hover {
+    stroke: white;
+  }
+  .X:active {
+    stroke: black;
+  }
