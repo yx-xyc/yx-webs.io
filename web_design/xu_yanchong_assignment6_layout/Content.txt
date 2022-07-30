@@ -1,0 +1,17 @@
+Web Design Layout Text
+
+What is numpy and pandas?
+Entering the era of digitalization, the amount of data is increasing in exponential speed — your browser history, your favorite song list, lecture recordings, study materials. All these information is created and stored by digitalization, making the availability of data become unprecedentedly high. To better process and dig into all the data created, Numpy and Pandas, as two extremely convenient python package, is introduced. 
+When to use numpy?
+As the name numpy, combination of number and python, indicated, numpy frequently used to handle all the numeric values and arithmetic process. By providing two typical types of data structure, array and matrix, both unidimensional  and multidimensional datasets can be processed. Moreover, by subscripting and slicing a array, the data stored in the array can be easily accessed and, by encapsulated function of numpy, all the complex process, such as transpose, matrix multiplication, sort can all be easily done by only one line of code, increasing the efficiency of data processing unprecedentedly. All these scenario mentioned above are when numpy is needed.
+When to use pandas?
+As a package that is based on numpy and designed to supplement the shortage of numpy, pandas pay attentions to presenting the content of data, especially on the data accessibility. Based on the numpy array, pandas designed the data structure Series, which could be seen as a combination of a list and dictionary. Beside slicing and subscripting, the data stored could also be accessed through the form of key-value pair: by given the key, the value can be accessed, vise versa. Based on Series, the most featured data structure in pandas, DataFrame is created. A DataFrame could be seen as a combination of multiple Series that forms a table: each Series is a column in the table. With this data structure, you can easily find a specific cell in a datasets that is consist of thousands of rows and columns, contributing to increase the data accessibility. 
+What does numpy do here?
+In this case, numpy is used to calculate a system of equation of equations, which is consist of -x +2y -z = 9, 3x-7y-2z-20, 2x+2y+z=1. Some knowledge of linear algebra is applied in this case, so that this system of equations could be solved by simply multiply two matrix.
+What are the functions applied in this case?
+The first function applied here is np.matrix(). By giving arrays to this function it would used matrix to store these data. Then, the second function applied here is np.matrix().I which is convert the matrix created to the inverse so that the result of the multiplication is the solution to this system of equations.
+Above: about the table
+By saving all the data of Titanic into a data frame, the data can be represented in this form of table. Both column or row can be see as a single series, providing comprehensive clear view of the whole datasets.
+Below: access the data in the table
+With the line of code that titanic.loc[0, ['age','sex','class']], the age, sex, class element of row number 0 is accessed and presented as shown in the graph. In the same way, any cell in this whole table, can easily be accessed by the specific index or constrains.
+

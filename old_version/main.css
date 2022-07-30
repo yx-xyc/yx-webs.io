@@ -1,0 +1,18 @@
+@font-face {
+  font-family: "JosefinSansR";
+  src: url("Josefin_Sans/static/JosefinSans-Regular.ttf");
+}
+@font-face {
+  font-family: "JosefinSansL";
+  src: url("Josefin_Sans/static/JosefinSans-Light.ttf");
+}
+body {
+  font-family: "JosefinSansR";
+}
+#container {
+  margin: auto;
+  width: 90%;
+}
+li {
+  margin-bottom: 10px;
+}

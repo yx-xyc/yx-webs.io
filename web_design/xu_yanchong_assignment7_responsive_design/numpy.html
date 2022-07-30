@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Into to Numpy</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1>Intro to NumPy</h1>
+      </header>
+      <main>
+        <article class="numpy">
+          <h2>Use NumPy to create arrays and special arrays</h2>
+          <p>
+            As what we can see in the image below, two ways to create arrays is
+            presented. On the left of the image, the function np.array() is
+            called and the input is a list which stored number 1 and 2. By the
+            line that data = np.array([1,2]), an array contains number 1 and 2
+            is created and is stored in the variable data.
+          </p>
+          <p>
+            In some special case, we don't know about the specific values that
+            should be stored in the array, but we know how many values there are
+            to store. In this case we need to create an array with given length.
+            Then, the right function is our choice. By given a nnumber as input
+            to np.ones() it would return an array with the given number as
+            length and all the values inside would be number 1.
+          </p>
+        </article>
+        <figure>
+          <img
+            class="npgraph"
+            src="images/np_array_dataones.png"
+            srcset="images/np_array_dataones-2x.png"
+            width="1000"
+            height="240"
+            alt="create array"
+          />
+        </figure>
+        <article class="numpy">
+          <h2>How can we refer to the data store in array?</h2>
+          <p>
+            The graph below address the concept that each element in array has a
+            corresponding index, which allow as to access the data stored in
+            array through the efficient. From the left-most graph, we can see
+            that the index of the first number is zero, and index will increase
+            1 for each element after. Thus, with data[0] we can get the first
+            element, and data[1] for the seconde.
+          </p>
+          <p>
+            In the situation we want to access more than one data
+            continuously,we will use data[0:2] and data[1:], which corresponding
+            to get all the elmement with index large or equal to 0 and smaller
+            than 2, get all the data with index larger than 1, respectively.
+          </p>
+          <p>
+            Moreover, in some special cases, we want to access data in reverse
+            order. In contrast to the normal order, in reverser order, the last
+            element stored is idnexed as -1 and will decrease 1 for each element
+            before. Thus, to get the last 2 element we can use data[-2:] -- get
+            all the data with index larger or equal to -2, which is index -2 and
+            index -1.
+          </p>
+        </article>
+        <figure>
+          <img
+            class="npgraph"
+            src="images/np_indexing.png"
+            srcset="images/np_indexing-2x.png"
+            width="1000"
+            height="240"
+            alt="access data in array"
+          />
+        </figure>
+        <article class="numpy">
+          <h2>Add, substract, multiply, and divide of arrays</h2>
+          <p>
+            The below pitcure shows the basic operation we can apply to arrays
+            with same length. For the add, subtract, multiply and divide between
+            two arrays. The result would just be the array that stored the sum,
+            difference, product, or quotient of the two element from two arrays
+            at corresponding index.
+          </p>
+        </article>
+        <figure>
+          <img
+            class="npgraph"
+            src="images/np_sub_mult_divide.png "
+            srcset="images/np_sub_mult_divide-2x.png"
+            width="1000"
+            height="240"
+            alt="operations to array"
+          />
+        </figure>
+      </main>
+    </div>
+  </body>
+</html>

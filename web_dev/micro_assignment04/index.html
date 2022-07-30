@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Micro 04</title>
+        <style>
+            #calculator > div{
+                display: inline-block;
+                /* border: 1px solid black; */
+                vertical-align: middle;
+            }
+            input {
+                width: 100px;
+                height: 100px;
+                text-align: center;
+
+            }
+            #result {
+                display: table-cell;
+                width: 100px;
+                height: 100px;
+                text-align: center;
+                /* text-justify: auto; */
+                /* position: relative;
+                bottom: 40px; */
+                vertical-align: middle;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Micro 04</h1>
+        <div id="calculator">
+            <div>
+                <input type="text" id="firstNumber" maxlength="6">
+            </div>
+            <div>
+                <select id="operation">
+                    <option value="plus" selected>+</option> 
+                    <option value="minus">-</option>
+                    <option value="multiply">*</option>  
+                    <option value="divide">/</option>  
+                </select>           
+            </div>
+            <div>
+                <input type="text" id="secondNumber" maxlength="6">
+            </div>
+            <div>
+                <button id="equal" >=</button> 
+            </div>
+            <div>
+                <div id="result">?</div>
+            </div>
+
+        </div>
+        <script>
+            let btn = document.getElementById("equal")
+            let num1 = document.getElementById("firstNumber")
+            let num2 = document.getElementById("secondNumber")
+            let oper = document.getElementById("operation")
+            let result = document.getElementById("result")
+            btn.onclick = function(event){
+                console.log(num1.value)
+                console.log(oper.value)
+                console.log(num2.value)
+                if (oper.value=='plus'){
+                    console.log(parseFloat(num1.value) + parseFloat(num2.value))
+                    result.innerHTML = parseFloat(num1.value) + parseFloat(num2.value)
+                } else if (oper.value=='minus'){
+                    result.innerHTML = parseFloat(num1.value) - parseFloat(num2.value)
+                } else if (oper.value=='multiply'){
+                    result.innerHTML = parseFloat(num1.value) * parseFloat(num2.value)
+                } else if (oper.value =='divide'){
+                    result.innerHTML = parseFloat(num1.value) / parseFloat(num2.value)
+                }                
+            }
+        </script>
+    </body>
+</html>

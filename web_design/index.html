@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Yanchong Xu</title>
+    <style>
+      p {
+        font-family: "Gill Sans", sans-serif;
+        font-size: 1.5em;
+        line-height: 1.3em;
+      }
+      div {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+      svg {
+        border: 3px solid black;
+      }
+      div {
+        width: 90%;
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+      .logo {
+        fill: none;
+        stroke: #f58709;
+        stroke-width: 8;
+      }
+      .Y {
+        stroke: #54c0cc;
+        stroke-width: 8;
+      }
+      .X {
+        stroke: #7ea00e;
+        stroke-width: 8;
+      }
+      .sign {
+        font-family: "Gill Sans", sans-serif;
+        font-size: 1.5em;
+        line-height: 1.3em;
+        fill: white;
+      }
+      a:hover {
+        color: black;
+        background: rgb(255, 102, 0);
+      }
+      a:active {
+        color: white;
+        background: green;
+      }
+      .Y:hover {
+        stroke: white;
+      }
+      .Y:active {
+        stroke: black;
+      }
+      .X:hover {
+        stroke: white;
+      }
+      .X:active {
+        stroke: black;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <h1 style="margin-top: 1.5em">Introduction to Web Design</h1>
+      <p>
+        Hi this Yanchong. Senior year, major in computer science and data science. A
+        boring person who sometimes plays badminton.
+      </p>
+
+      <ul style="font-family: 'Gill Sans', sans-serif; font-size: 1.3em">
+        <li><a href="xu_yanchong_assignment2_html/index.html">HTML</a></li>
+        <li><a href="xu_yanchong_assignment3_css/index.html">CSS</a></li>
+        <li><a href="xu_yanchong_assignment4_image/index.html">Raster Graphics</a></li>
+        <li><a href="xu_yanchong_assignment5_logo/index.html">Vector Graphics</a></li>
+        <li><a href="xu_yanchong_assignment6_layout/index.html">Website Layout</a></li>
+        <li><a href="xu_yanchong_assignment7_responsive_design/index.html">Responsive Design</a></li>
+        <li><a href="xu_yanchong_assignment8_javascript/index.html">Javascript</a></li>
+        <li><a href="xu_yanchong_assignment9_final/index.html">Final Project</a></li>
+      </ul>
+      <svg width="400" height="300">
+        <title>My Personal Logo</title>
+        <a href="xu_yanchong_assignment5_logo/index.html">
+          <rect
+            id="square"
+            x="100"
+            y="50"
+            width="200"
+            height="200"
+            style="fill: #336b87; stroke: #336b87; stroke-width: 5"
+          ></rect>
+        </a>
+        <circle
+          id="circle"
+          cx="200"
+          cy="150"
+          r="100"
+          style="fill: #dcd964; stroke: #dcd964; stroke-width: 5"
+        ></circle>
+        <g id="Y">
+          <a href="https://i6.cims.nyu.edu/~yx2021/me/">
+            <line class="Y" x1="200" y1="100" x2="225" y2="150"></line>
+            <line class="Y" x1="250" y1="100" x2="225" y2="150"></line>
+            <line class="Y" x1="225" y1="150" x2="225" y2="200"></line>
+          </a>
+        </g>
+
+        <g id="X">
+          <a href="https://i6.cims.nyu.edu/~yx2021/image/">
+            <line class="X" x1="150" y1="100" x2="200" y2="200"></line>
+            <line class="X" x1="200" y1="100" x2="150" y2="200"></line>
+          </a>
+        </g>
+        <path
+          class="logo"
+          d="
+          M 200 100
+          L 200 200
+          L 250 200
+          L 275 150
+          L 250 100
+          L 200 100
+          "
+        />
+        <path
+          class="logo"
+          d="
+          M 150 100
+          L 125 150
+          L 150 200
+          "
+        />
+        <text x="225" y="225" class="sign">Y.X.</text>
+      </svg>
+    </div>
+  </body>
+</html>

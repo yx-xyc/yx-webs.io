@@ -1,0 +1,51 @@
+@font-face {
+  font-family: "MyFont";
+  src: url("/Raleway-4.101/static/TTF/Raleway-Medium.ttf");
+}
+#container {
+    max-width: 80em;
+    margin: auto;
+  }
+.logo {
+  background-color: lightgoldenrodyellow;
+}
+nav {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-auto-rows: auto;
+    gap: 5em;
+  } 
+section {
+  display: flex;
+  flex-direction: column;
+}
+main {
+  display: flex;
+} 
+main > article { /* paragraphs within the <main> element */
+  width: 31%;
+  margin-right: 2em;
+}
+.numpy {
+  width: 45%
+}
+.pandas {
+  display: flex;
+}
+h1 {
+  background-color: chartreuse;
+}
+h2 {
+  font-family: 'Courier New', Courier, monospace;
+ background-color: lightblue;
+}
+p {
+  font-family: "MyFont", serif;
+  background-color: aquamarine;
+}
+.logo:hover {
+  background-color: yellow;
+}
+.logo:active {
+  background-color: blue;
+}

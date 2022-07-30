@@ -1,0 +1,113 @@
+/* Character encoding */
+@charset "utf-8";
+
+/* General Setting */
+* {
+    margin: 0;
+    padding: 0;
+}
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+/* CSS variable */
+:root {
+    --nav-color: lightgoldenrodyellow;
+}
+
+/* text */
+@font-face {
+    font-family: "Raleway";
+    src: url("/Raleway-4.101/static/TTF/Raleway-Medium.ttf");
+  }
+nav {
+    background-color: lightgray;
+  }
+h1, h2, nav {
+    margin-top: 1em;
+    font-family:'Lucida Sans', sans-serif;
+    font-weight: bolder;
+    font-size: 1.5em;
+    line-height: 1.7em;
+}
+h1 {font-size: 2em;
+    border-bottom: 1px solid black;
+}
+p {
+    font-family: Raleway, sans-serif;
+    font-weight: normal;
+    font-size: 1.1em;
+    line-height: 1.3em;
+    margin-top: 0.5em;
+}
+a:link, a:visited {
+    color: black;
+    text-decoration: underline;
+    text-decoration-color: black;
+  }
+a:hover {
+    color: grey;
+    text-decoration: underline;
+    text-decoration-color: grey;
+}
+.logo:hover {
+    background-color: grey;
+  }
+.logo:active {
+    background-color: var(--nav-color);
+  }
+footer {
+    border-top: 1px solid black;
+    padding: 2em;
+    text-align: center;
+    font-size: 0.8em;
+  }
+
+/* layout */
+nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+figure {
+    display: flex; 
+    max-height: 50vh; 
+    /* viewport height ( don't let image get too big) */
+    overflow:scroll;
+    justify-content: center;
+  }
+figure > img {
+    max-width: 90%;
+    max-height: 90%;
+    margin: auto;
+    height:auto;
+}
+
+a > img {
+    display: block;
+    margin: auto;
+    max-width: 90%;
+}
+header, article {
+    padding: 1em;
+}
+/* media queries */
+@media (min-width: 45em){
+    
+    nav{
+        flex-direction: row;
+    }
+    article {
+        max-width: 90%;
+        margin:auto;
+        display: flex;
+        justify-content: space-around;
+    }
+    article > h2 {
+        width:20%;
+    }
+    article > p {
+        width:38%;
+        margin-right: 2em;
+    }
+}

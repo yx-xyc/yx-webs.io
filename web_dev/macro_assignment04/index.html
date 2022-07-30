@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <title>Design Your own Hogwarts!</title>
+    <style type="text/css">
+      #container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        margin: auto;
+      }
+      #map {
+        margin: 1px;
+        border: 1px solid black;
+        width: 320px;
+        height: 320px;
+      }
+      #tile_container {
+        /* border: 1px solid black; */
+        width: 650px;
+        height: 1500;
+        margin-left: 1em;
+      }
+      .tile {
+        box-sizing: border-box;
+        width: 32px;
+        height: 32px;
+        /* background-color: aqua; */
+        position: relative;
+        float: left;
+        padding: 2px;
+      }
+      .selected {
+        box-sizing: border-box;
+        border: 1px solid orange;
+      }
+      .draw:hover {
+        border: 1px solid red;
+      }
+      .draw {
+        box-sizing: border-box;
+        width: 32px;
+        height: 32px;
+        position: relative;
+        float: left;
+      }
+      #other_challenges {
+        display: flex;
+        flex-direction: column;
+        /* margin-left: 2em; */
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Design Your Own Hogwarts!</h1>
+    <div id="container">
+      <div id="map"></div>
+      <div id="tile_container">
+        <p>
+          Click on a tile to select it. Then click on the map on the left to
+          place the tile.
+        </p>
+        <div id="tiles"></div>
+      </div>
+      <div id="other_challenges">
+        <h3>Previous challenges</h3>
+        <a href="01.html">challenge 1</a>
+        <a href="02.html">challenge 2</a>
+        <a href="03.html">challenge 3</a>
+        <a href="04.html">challenge 4</a>
+      </div>
+    </div>
+
+    <!-- load in the image array file - this makes available a new array of all image filenames that you can use for this project -->
+    <!-- Assets courtesy of Crawl Stone Soup: https://github.com/crawl/tiles -->
+    <script src="image_array.js"></script>
+    <script>
+      let map = document.getElementById("map");
+      let tiles = document.getElementById("tiles");
+      let selected = null;
+
+      for (let i = 0; i < 100; i++) {
+        draw = document.createElement("div");
+        draw.classList.add("draw");
+        draw.onclick = function (event) {
+          console.log(event.target);
+          // event.bubbles = false;
+          if (selected != null) {
+            console.log(event.target);
+            img = document.createElement("img");
+            img.src = selected.src;
+            event.currentTarget.style.backgroundImage = `url(${img.src})`;
+          } else {
+            alert("Select a tile on th right!");
+          }
+        };
+        map.appendChild(draw);
+      }
+
+      for (let j = 0; j < array_library.length; j++) {
+        tile = document.createElement("img");
+        tile.classList.add("tile");
+        tile.src = array_library[j];
+        tile.onclick = function (event) {
+          if (selected != null) {
+            console.log(selected);
+            selected.classList.remove("selected");
+          }
+          console.log(event.target);
+          event.target.classList.add("selected");
+          selected = event.target;
+        };
+        tiles.appendChild(tile);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Micro Assignment 05</title>
+        <style>
+        .box {
+            display: inline-block;
+
+        }
+        </style>
+    </head>
+    <body>				
+        <div>
+            <button id="addbox">Add box to page in 1 second</button>
+        
+            <button id="left">Spin Left</button>
+            <button id="right">Spin Right</button>
+            <button id="stop">Stop</button>
+        
+            <br>
+        
+            <div id="img" style="width: 50px; height: 50px; background-color: yellow; border: 5px solid black; margin-top: 20px; margin-bottom: 20px;"></div>
+        
+            <div id="boxes" style="transform: rotate(0deg)"></div>
+        </div>
+            
+        
+        <script>        
+            let addBox = document.getElementById('addbox');
+            let spinLeft = document.getElementById('left');
+            let spinRight = document.getElementById('right');
+            let spinStop = document.getElementById('stop');
+            let boxes = document.getElementById('boxes');
+            let box = document.getElementById('img')
+            function generateColor() {
+                let r = parseInt(Math.random() * 256);
+                let g = parseInt(Math.random() * 256);
+                let b = parseInt(Math.random() * 256);
+                return [r, g, b];
+            }
+            addBox.onclick = function(event) {
+                setTimeout(function(event) {
+                    let rect = document.createElement('div');
+                    rect.classList.add('box')
+                    let width = parseInt(Math.random() * 100);
+                    let height = parseInt(Math.random() * 100);
+                    let color = generateColor();
+                    rect.style.width = `${width}px`;
+                    rect.style.height = `${height}px`;
+                    rect.style.backgroundColor = `rgb(${color[0]},${color[1]},${color[2]})`;
+                    boxes.appendChild(rect);
+                },1000)
+            }
+            function increaseAngel(event){
+                    angel += 1;
+                    box.style.transform = `rotate(${angel}deg)`;
+                }
+            function decreaseAngel(event){
+                    angel -= 1;
+                    box.style.transform = `rotate(${angel}deg)`;
+                }
+            let angel = 0;
+            let controller;
+            spinLeft.onclick = function(event){
+                clearInterval(controller);
+                controller = setInterval(decreaseAngel, 10)
+            }
+            spinRight.onclick = function(event){
+                clearInterval(controller);
+                controller = setInterval(increaseAngel, 10)
+            }
+            spinStop.onclick = function(evnent){
+                clearInterval(controller);
+            }
+        </script>
+    </body>
+</html>
+
+        
+ 
+    

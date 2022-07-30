@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Into to Pandas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <div>
+      <header>
+        <h1>Intro to Pandas</h1>
+      </header>
+      <main>
+        <article>
+          <h2>Data Strucures Series</h2>
+          <p>
+            Series is a data structure that is similar to the array in NumPy.
+            The first difference is that Series allow various types of data to
+            store in the same series. For example, the image below shows a
+            Series that contains both float and NaN values. The second
+            difference is that, though in the image below, we still refer to the
+            element in Series with series of numbers start from 0, they actually
+            can be changed to any other data types, such as string. In this way,
+            we can access element through data["string"].
+          </p>
+        </article>
+        <figure>
+          <img
+            src="images/series.png"
+            srcset="images/series-2x.png"
+            width="600"
+            height="600"
+            alt="series"
+          />
+        </figure>
+        <article>
+          <h2>View the Data stored in a pd.DataFrame</h2>
+          <p>
+            A data frame is consist of multiple Series as columns or rows. Thus,
+            DataFrame actually can be viewed as a table that can be referenced
+            by either the first row or the first column. The image below shows
+            the way to display the first or last several rows. Through,
+            df.head(), by default, the first 5 rows of the DataFrame is printed.
+            Through df.tail(3), the last three rows of the DataFrame is
+            displayed.
+          </p>
+        </article>
+        <figure>
+          <img
+            src="images/viewData.png"
+            srcset="images/viewData-2x.png"
+            width="600"
+            height="600"
+            alt="viewData"
+          />
+        </figure>
+        <article>
+          <h2>Display the Data in DataFrame</h2>
+          <p>
+            The iamge below specifically address how we can reference to the
+            data stored in a DataFrame. For each DataFrame, there is attribute
+            called index and columns which correspondeing to the first column
+            and first row respectively. With these two attribute, we can get
+            data by columns, such as df['A'], or get datga by rows
+            df['2013-01-01'], or get the value in specific row and column, such
+            as df['2013-01-01', 'A'].
+          </p>
+        </article>
+        <figure>
+          <img
+            src="images/display.png"
+            srcset="images/display-2x.png"
+            width="600"
+            height="600"
+            alt="display"
+          />
+        </figure>
+        <article>
+          <h2>The basic description of the data in DataFrame</h2>
+          <p>
+            Describe is a function that can be applied to a DataFrame, and as a
+            result, it would reutrun basic info that describe each column. For
+            example, in the below image, through describe, the count, mean, std,
+            min, 25, 50, 75 precentiles and max values are printed for each
+            column.
+          </p>
+        </article>
+        <figure>
+          <img
+            src="images/descirbe.png"
+            srcset="images/describe-2x.png"
+            width="600"
+            height="600"
+            alt="describe"
+          />
+        </figure>
+      </main>
+    </div>
+  </body>
+</html>

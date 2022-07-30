@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Gotta Catch 'em All!</title>
+    <style>
+      #forest_container {
+        width: 800px;
+        height: 600px;
+        position: relative;
+        /* float: left; */
+        margin: auto;
+      }
+      #background {
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 87%;
+      }
+      #g1 {
+        position: absolute;
+        z-index: 1;
+        left: 0px;
+        bottom: 0px;
+      }
+      #g2 {
+        position: absolute;
+        z-index: 1;
+        left: 270px;
+        bottom: 0px;
+      }
+      #g3 {
+        position: absolute;
+        z-index: 1;
+        right: 0px;
+        bottom: 0px;
+      }
+      .grass:hover {
+        background-color: rgba(255, 255, 0, 0.5);
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+        /* width: 800px;
+        height: 600px; */
+        margin: auto;
+        width: 80%;
+      }
+      div {
+        width: 90%;
+      }
+      #text_container {
+        margin: auto;
+        width: 800px;
+        height: auto;
+        display: flex;
+        flex-direction: row;
+      }
+      #text_container > div {
+        margin-left: 20px;
+        width: 50%;
+      }
+      #result_table {
+        margin: auto;
+      }
+      table {
+        margin: auto;
+        table-layout: fixed;
+        width: 800px;
+        /* border-collapse: collapse; */
+        border: 3px solid black;
+      }
+      .num {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="forest_container">
+      <h1>Gotta Catch 'em All!</h1>
+      <img id="background" src="images/environment_forestbackground.png" />
+      <img class="grass" id="g1" src="images/grass.png" />
+      <img class="grass" id="g2" src="images/grass.png" />
+      <img class="grass" id="g3" src="images/grass.png" />
+    </div>
+    <div id="text_container">
+      <div id="processinfo">
+        <br />
+        <h2>Game Process</h2>
+        <p>
+          Your goal in this game is to earn as many Pokeballs as possible while
+          catching a variety of Pokemon along the way.
+        </p>
+
+        <p>
+          To play simply click on one of the three grass clumps in the forest.
+          Behind one of those grass clumps is a Pokemon that can be caught.
+          Behind another grass clump are two free Pokeballs that you can use to
+          try again, and behind the last grass clump is nothing.
+        </p>
+
+        <p>
+          Note that each time you pick a grass clump you will be using one of
+          your Pokeballs, and when you run out the game will be over!
+        </p>
+
+        <div id="progress"></div>
+        <br />
+        <div>Pokeballs left: <span id="pokeballs_left">5</span></div>
+        <div>Pokemon caught: <span id="pokemon_caught">0</span></div>
+        <button style="display: none" id="play_again_button">Play Again</button>
+        <div id="game_over">Game Over!</div>
+      </div>
+      <div>
+        <br />
+        <h2>Result History</h2>
+        <div id="history"></div>
+        <br />
+        <button id="clear_history_button">Clear History</button>
+        <button id="restart_button">Restart Game</button>
+      </div>
+    </div>
+    <br />
+    <div id="result_table">
+      <table>
+        <tr>
+          <th>Pokemon</th>
+          <th>Count</th>
+          <th>Histogram</th>
+        </tr>
+        <tr class="row">
+          <td>Pikachu</td>
+          <td class="num">0</td>
+          <td><div style="width: 0em; background-color: yellow">&nbsp;</div></td>
+        </tr>
+
+        <tr class="row">
+          <td>Bulbasaur</td>
+          <td class="num">0</td>
+          <td><div style="width: 0em; background-color: green">&nbsp;</div></td>
+        </tr>
+
+        <tr class="row">
+          <td>Charmander</td>
+          <td class="num">0</td>
+          <td><div style="width: 0em; background-color: red">&nbsp;</div></td>
+        </tr>
+
+        <tr class="row">
+          <td>Eevee</td>
+          <td class="num">0</td>
+          <td><div style="width: 0em; background-color: burlywood">&nbsp;</div></td>
+        </tr>
+
+        <tr class="row">
+          <td>Squirtle</td>
+          <td class="num">0</td>
+          <td><div style="width: 0em; background-color: blue">&nbsp;</div></td>
+        </tr>
+      </table>
+    </div>
+    <script>
+      // grab some references to the elements that will be updated / changed / adjusted
+      const g1 = document.getElementById("g1");
+      const g2 = document.getElementById("g2");
+      const g3 = document.getElementById("g3");
+      const progress = document.getElementById("progress");
+      const pokeballs_left = document.getElementById("pokeballs_left");
+      const pokemon_caught = document.getElementById("pokemon_caught");
+      const play_again_button = document.getElementById("play_again_button");
+      const game_over_div = document.getElementById("game_over");
+      const history = document.getElementById("history");
+      const clear_history = document.getElementById("clear_history_button");
+      const restart_button = document.getElementById("restart_button");
+      let rows = document.querySelectorAll(".row");
+      const pokemon = [
+        "images/pikachu.png",
+        "images/bulbasaur.png",
+        "images/charmander.png",
+        "images/eevee.png",
+        "images/squirtle.png",
+      ];
+      const names = ["Pikachu", "Bulbasaur", "Charmander", "Eevee", "Squirtle"];
+      var counts = [0, 0, 0, 0, 0];
+      let pokeballs = 5;
+      let pokemon_num = 0;
+      var state = false;
+      game_over.style.display = "none";
+
+      clear_history_button.onclick = function (event) {
+        history.innerHTML = "";
+      };
+
+      restart_button.onclick = function (event) {
+        pokeballs = 5;
+        pokemon_num = 0;
+        counts = [0, 0, 0, 0, 0];
+        for (let i = 0; i < counts.length; i++) {
+            rows[i].childNodes[3].innerHTML = counts[i];
+            rows[i].childNodes[5].firstChild.style.width = `${
+            counts[i] * 2
+          }em`;
+          }
+        pokeballs_left.innerHTML = pokeballs;
+        pokemon_caught.innerHTML = pokemon_num;
+        history.innerHTML = "";
+        g1.src = "images/grass.png";
+        g2.src = "images/grass.png";
+        g3.src = "images/grass.png";
+        g1.style.pointerEvents = "auto";
+        g2.style.pointerEvents = "auto";
+        g3.style.pointerEvents = "auto";
+        play_again_button.style.display = "none";
+        game_over.style.display = "none";
+      };
+
+      g1.onclick = function (event) {
+        g1.style.pointerEvents = "none";
+        g2.style.pointerEvents = "none";
+        g3.style.pointerEvents = "none";
+        let chance = parseInt(Math.random() * 3);
+        let poke_index = parseInt(Math.random() * 5);
+        if (chance == 0) {
+          g1.src = "";
+          pokeballs -= 1;
+          progress.innerHTML = "Nothing here!";
+          let caught = document.createElement("li");
+          caught.innerHTML = `nothing found!`;
+          history.insertBefore(caught, history.firstChild);
+        } else if (chance == 1) {
+          g1.src = `${pokemon[poke_index]}`;
+          counts[poke_index] += 1;
+          for (let i = 0; i < counts.length; i++) {
+            rows[i].childNodes[3].innerHTML = counts[i];
+          }
+          rows[poke_index].childNodes[5].firstChild.style.width = `${
+            counts[poke_index] * 2
+          }em`;
+          pokemon_num += 1;
+          pokeballs -= 1;
+          progress.innerHTML = `You find a(n) ${names[poke_index]}`;
+          let caught = document.createElement("li");
+          caught.innerHTML = `${names[poke_index]} found!`;
+          history.insertBefore(caught, history.firstChild);
+        } else {
+          g1.src = "images/pokeballs.png";
+          let caught = document.createElement("li");
+          caught.innerHTML = `pokeballs found!`;
+          history.insertBefore(caught, history.firstChild);
+          pokeballs += 2;
+        }
+
+        pokeballs_left.innerHTML = pokeballs;
+        pokemon_caught.innerHTML = pokemon_num;
+
+        // show the button to play again
+        if (pokeballs > 0) {
+          play_again_button.style.display = "block";
+        } else {
+          game_over.style.display = "block";
+          game_over.style.color = "red";
+        }
+      };
+
+      g2.onclick = function (event) {
+        g1.style.pointerEvents = "none";
+        g2.style.pointerEvents = "none";
+        g3.style.pointerEvents = "none";
+        let chance = parseInt(Math.random() * 3);
+        let poke_index = parseInt(Math.random() * 5);
+        if (chance == 0) {
+          g2.src = "";
+          pokeballs -= 1;
+          progress.innerHTML = "Nothing here!";
+          let caught = document.createElement("li");
+          caught.innerHTML = `nothing found!`;
+          history.insertBefore(caught, history.firstChild);
+        } else if (chance == 1) {
+          g2.src = `${pokemon[poke_index]}`;
+          counts[poke_index] += 1;
+          for (let i = 0; i < counts.length; i++) {
+            rows[i].childNodes[3].innerHTML = counts[i];
+          }
+          rows[poke_index].childNodes[5].firstChild.style.width = `${
+            counts[poke_index] * 2
+          }em`;
+          pokemon_num += 1;
+          pokeballs -= 1;
+          progress.innerHTML = `You find a(n) ${names[poke_index]}`;
+          let caught = document.createElement("li");
+          caught.innerHTML = `${names[poke_index]} found!`;
+          history.insertBefore(caught, history.firstChild);
+        } else {
+          g2.src = "images/pokeballs.png";
+          pokeballs += 2;
+          let caught = document.createElement("li");
+          caught.innerHTML = `pokeballs found!`;
+          history.insertBefore(caught, history.firstChild);
+        }
+
+        pokeballs_left.innerHTML = pokeballs;
+        pokemon_caught.innerHTML = pokemon_num;
+
+        // show the button to play again
+        if (pokeballs > 0) {
+          play_again_button.style.display = "block";
+        } else {
+          game_over.style.display = "block";
+          game_over.style.color = "red";
+        }
+      };
+
+      g3.onclick = function (event) {
+        g1.style.pointerEvents = "none";
+        g2.style.pointerEvents = "none";
+        g3.style.pointerEvents = "none";
+        let chance = parseInt(Math.random() * 3);
+        let poke_index = parseInt(Math.random() * 5);
+        if (chance == 0) {
+          g3.src = "";
+          pokeballs -= 1;
+          progress.innerHTML = "Nothing here!";
+          let caught = document.createElement("li");
+          caught.innerHTML = `nothing found!`;
+          history.insertBefore(caught, history.firstChild);
+        } else if (chance == 1) {
+          g3.src = `${pokemon[poke_index]}`;
+          counts[poke_index] += 1;
+          for (let i = 0; i < counts.length; i++) {
+            rows[i].childNodes[3].innerHTML = counts[i];
+          }
+          rows[poke_index].childNodes[5].firstChild.style.width = `${
+            counts[poke_index] * 2
+          }em`;
+          pokemon_num += 1;
+          pokeballs -= 1;
+          progress.innerHTML = `You find a(n) ${names[poke_index]}`;
+          let caught = document.createElement("li");
+          caught.innerHTML = `${names[poke_index]} found!`;
+          history.insertBefore(caught, history.firstChild);
+        } else {
+          g3.src = "images/pokeballs.png";
+          pokeballs += 2;
+          let caught = document.createElement("li");
+          caught.innerHTML = `pokeballs found!`;
+          history.insertBefore(caught, history.firstChild);
+        }
+
+        pokeballs_left.innerHTML = pokeballs;
+        pokemon_caught.innerHTML = pokemon_num;
+
+        // show the button to play again
+        if (pokeballs > 0) {
+          play_again_button.style.display = "block";
+        } else {
+          game_over.style.display = "block";
+          game_over.style.color = "red";
+        }
+      };
+      
+
+      // make the play_again_button listen for clicks
+      play_again_button.onclick = function () {
+        g1.src = "images/grass.png";
+        g2.src = "images/grass.png";
+        g3.src = "images/grass.png";
+        g1.style.pointerEvents = "auto";
+        g2.style.pointerEvents = "auto";
+        g3.style.pointerEvents = "auto";
+        play_again_button.style.display = "none";
+      };
+    </script>
+  </body>
+</html>
